@@ -1,0 +1,28 @@
+# Ignorar el entorno virtual
+venv/
+
+# Ignorar el archivo de configuración con credenciales
+.env
+
+# Ignorar los datos descargados
+data/
+
+# Ignorar archivos de caché y otros archivos temporales
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Ignorar configuraciones de IDE
+.idea/
+.vscode/
+*.sublime-project
+*.sublime-workspace
+
+# Ignorar archivos de log
+*.log
+
+# Ignorar otros archivos innecesarios
+*.tmp
+*.swp
+*.bak
+*.old
