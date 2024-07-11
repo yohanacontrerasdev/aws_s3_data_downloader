@@ -37,8 +37,8 @@ def download_pdfs():
             # It's a directory, do nothing
             continue
         
-        # Preserve the full path, maintaining the directory structure
-        destination_path = os.path.join(DOWNLOAD_DIR, file_name)
+        # Here, only the name of the file is taken
+        destination_path = DOWNLOAD_DIR / Path(file_name).name
 
         # Create necessary directories
         if not os.path.exists(os.path.dirname(destination_path)):
