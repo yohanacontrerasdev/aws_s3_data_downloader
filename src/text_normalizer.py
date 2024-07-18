@@ -58,4 +58,4 @@ def normalize_corpus(corpus, prefix='cleaned_text'):
     with open(output_file, 'w', encoding='utf-8') as f:
         f.write(corpus)
 
-    return corpus, output_file
+    return corpus
