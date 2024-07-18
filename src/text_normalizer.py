@@ -4,7 +4,7 @@ from nltk.corpus import stopwords
 from nltk.stem import WordNetLemmatizer
 from nltk.tokenize import word_tokenize
 
-# Asegúrate de descargar estos recursos de nltk si aún no lo has hecho
+
 import nltk
 nltk.download('punkt')
 nltk.download('wordnet')
@@ -23,11 +23,10 @@ def clean_text(text):
     return text
 
 def expand_contractions(text):
-    # Aquí puedes agregar un diccionario de contracciones y su expansión
+  
     contractions = {
         "can't": "cannot",
         "won't": "will not",
-        # Agrega más contracciones según sea necesario
     }
     for contraction, expanded in contractions.items():
         text = re.sub(contraction, expanded, text)
@@ -53,7 +52,6 @@ def normalize_corpus(corpus, prefix='cleaned_text'):
     corpus = lemmatize_text(corpus)
     corpus = remove_stopwords(corpus)
 
-    # Generar el nombre del archivo basado en el prefijo
     output_file = f'{prefix}.txt'
 
     # Guardar el corpus en un archivo .txt
