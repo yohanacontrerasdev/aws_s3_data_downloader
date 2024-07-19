@@ -3,3 +3,6 @@ python-dotenv
 pymupdf
 langchain
 nltk
+llama-parse
+nest_asyncio
+pandas
