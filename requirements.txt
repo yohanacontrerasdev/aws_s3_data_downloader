@@ -2,6 +2,7 @@ boto3
 python-dotenv
 pymupdf
 langchain
+langchain-community
 nltk
 llama-parse
 nest_asyncio
