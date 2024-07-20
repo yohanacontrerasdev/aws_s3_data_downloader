@@ -8,3 +8,6 @@ llama-parse
 nest_asyncio
 pandas
 faiss-cpu
+matplotlib
+seaborn
+wordCloud

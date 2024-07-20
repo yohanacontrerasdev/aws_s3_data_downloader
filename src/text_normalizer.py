@@ -97,7 +97,7 @@ def normalize_corpus(dataframes):
   if 'text' not in dataframes.columns: 
     raise ValueError("DataFrame must contain a 'text' column")
   
-  normalized_dataframes = []
+  normalized_texts = []
 
   for text in dataframes['text']:
     segments = extract_tables_and_text(text)
@@ -110,6 +110,8 @@ def normalize_corpus(dataframes):
           normalized_segments.append(clean_table_text(segment_text))
     
     combined_text = '\n\n'.join(normalized_segments)
-    normalized_dataframes.append(combined_text)
+    normalized_texts.append(combined_text)
+  
+  final_text = '\n\n'.join(normalized_texts)
 
-  return pd.DataFrame(normalized_dataframes, columns=["Normalized Text"])
+  return final_text
