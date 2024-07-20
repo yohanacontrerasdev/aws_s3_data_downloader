@@ -6,3 +6,4 @@ nltk
 llama-parse
 nest_asyncio
 pandas
+faiss-cpu

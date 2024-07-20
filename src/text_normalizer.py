@@ -94,9 +94,12 @@ def clean_table_text(table_text):
   return '\n'.join(cleaned_lines)
 
 def normalize_corpus(dataframes):
+  if 'text' not in dataframes.columns: 
+    raise ValueError("DataFrame must contain a 'text' column")
+  
   normalized_dataframes = []
 
-  for text in dataframes:
+  for text in dataframes['text']:
     segments = extract_tables_and_text(text)
     normalized_segments = []
 
