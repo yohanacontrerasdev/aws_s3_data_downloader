@@ -4,6 +4,7 @@ from collections import Counter
 from nltk.util import ngrams
 from sklearn.feature_extraction.text import CountVectorizer
 from textblob import TextBlob
+from nltk.tokenize import word_tokenize
 import seaborn as sns
 import pandas as pd
 import nltk
@@ -12,25 +13,33 @@ import re
 nltk.download('punkt')
 
 def clean_text(text):
-	return re.sub(r"[^\w\s]", "", text)
+  text = re.sub(r'\s*\|\s*', ' ', text)
+  text = re.sub(r'(?<!\w)-(?!\w)', ' ', text)
+  text = re.sub(r'\s+', ' ', text)
+  return text
 
-def analyze_text(cleaned_text, stop_words='english', delimiter='.'):
-	cleaned_text = clean_text(cleaned_text)
+def analyze_text(cleaned_text, stop_words='english', words_per_segment=50):
+  cleaned_text = clean_text(cleaned_text)
 
-	# Dividir el texto en documentos
-	documents = cleaned_text.split(delimiter)
+  # Tokenizar el texto
+  words = word_tokenize(cleaned_text)
+    
+  print("Tokens:", words)
 
-	# Inicializar CountVectorizer
-	cv = CountVectorizer(stop_words=stop_words)
+  # Agrupar tokens en segmentos de longitud fija
+  documents = [' '.join(words[i:i+words_per_segment]) for i in range(0, len(words), words_per_segment)]
 
-	# Ajustar y transformar los documentos
-	X = cv.fit_transform(documents)
+  # Inicializar CountVectorizer
+  cv = CountVectorizer(stop_words=stop_words)
 
-	# Número de palabras en el vocabulario
-	num_words = len(cv.get_feature_names_out())
-	vocab_sample = cv.get_feature_names_out()[:10]
+  # Ajustar y transformar los documentos
+  X = cv.fit_transform(documents)
 
-	return X, num_words, vocab_sample
+  # Número de palabras en el vocabulario
+  num_words = len(cv.get_feature_names_out())
+  vocab_sample = cv.get_feature_names_out()[:10]
+
+  return X, num_words, vocab_sample
 
 def analyze_sentiment(text):
 	cleaned_text = clean_text(text)
