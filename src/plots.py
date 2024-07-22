@@ -7,6 +7,7 @@ from textblob import TextBlob
 from nltk.tokenize import word_tokenize
 import seaborn as sns
 import pandas as pd
+import random
 import nltk
 import re
 
@@ -23,8 +24,6 @@ def analyze_text(cleaned_text, stop_words='english', words_per_segment=50):
 
   # Tokenizar el texto
   words = word_tokenize(cleaned_text)
-    
-  print("Tokens:", words)
 
   # Agrupar tokens en segmentos de longitud fija
   documents = [' '.join(words[i:i+words_per_segment]) for i in range(0, len(words), words_per_segment)]
@@ -35,9 +34,14 @@ def analyze_text(cleaned_text, stop_words='english', words_per_segment=50):
   # Ajustar y transformar los documentos
   X = cv.fit_transform(documents)
 
+  vocab = cv.get_feature_names_out()
+
   # Número de palabras en el vocabulario
-  num_words = len(cv.get_feature_names_out())
-  vocab_sample = cv.get_feature_names_out()[:10]
+  random_sample_size = 10
+  vocab_sample = random.sample(list(vocab), min(random_sample_size, len(vocab)))
+
+  # Número de palabras en el vocabulario
+  num_words = len(vocab)
 
   return X, num_words, vocab_sample
 
