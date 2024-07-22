@@ -11,3 +11,5 @@ faiss-cpu
 matplotlib
 seaborn
 wordCloud
+textblob
+scikit-learn

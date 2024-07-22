@@ -2,6 +2,8 @@ from wordcloud import WordCloud
 import matplotlib.pyplot as plt
 from collections import Counter
 from nltk.util import ngrams
+from sklearn.feature_extraction.text import CountVectorizer
+from textblob import TextBlob
 import seaborn as sns
 import pandas as pd
 import nltk
@@ -11,6 +13,30 @@ nltk.download('punkt')
 
 def clean_text(text):
 	return re.sub(r"[^\w\s]", "", text)
+
+def analyze_text(cleaned_text, stop_words='english', delimiter='.'):
+	cleaned_text = clean_text(cleaned_text)
+
+	# Dividir el texto en documentos
+	documents = cleaned_text.split(delimiter)
+
+	# Inicializar CountVectorizer
+	cv = CountVectorizer(stop_words=stop_words)
+
+	# Ajustar y transformar los documentos
+	X = cv.fit_transform(documents)
+
+	# Número de palabras en el vocabulario
+	num_words = len(cv.get_feature_names_out())
+	vocab_sample = cv.get_feature_names_out()[:10]
+
+	return X, num_words, vocab_sample
+
+def analyze_sentiment(text):
+	cleaned_text = clean_text(text)
+
+	analysis = TextBlob(cleaned_text)
+	return analysis.sentiment
 
 def generate_word_cloud(cleaned_text, title='Word Cloud'):
 	"""
@@ -63,27 +89,68 @@ def plot_common_words(cleaned_text, num_words=20):
 	plt.ylabel('Words')
 	plt.show()
 
-def generate_ngrams_df(text, n):
-	tokens = nltk.word_tokenize(text)
-	# Generar n-grams
-	n_grams = list(ngrams(tokens, n))   
-	# Crear un DataFrame
-	n_grams_df = pd.DataFrame(n_grams, columns=[f'word_{i+1}' for i in range(n)])
-	
-	return n_grams_df
+def generate_ngrams(words, n):
+ """
+ Genera n-grams a partir de una lista de palabras usando nltk.
+ """
+ return list(ngrams(words, n))
 
-def combine_ngrams(text, max_n):
-  all_ngrams = []
-	
-  text = clean_text(text)
-	
-  for n in range(1, max_n + 1):
-    n_grams_df = generate_ngrams_df(text, n)
-    n_grams_df['ngram_size'] = n 
-    all_ngrams.append(n_grams_df)
+def get_ngrams(text, n):
+ """
+ Limpia el texto, genera n-grams y cuenta su frecuencia.
+ """
+ # Limpiar el texto
+ cleaned_text = clean_text(text)
+ # Dividir el texto en palabras
+ words = cleaned_text.split()
+ # Generar n-grams
+ ngrams = generate_ngrams(words, n)
+ # Contar la frecuencia de los n-grams
+ ngram_freq = Counter(ngrams)
+ # Convertir a DataFrame para facilitar el análisis
+ ngram_df = pd.DataFrame(ngram_freq.items(), columns=['ngram', 'frequency']).sort_values(by='frequency', ascending=False)
+ ngram_df['ngram'] = ngram_df['ngram'].apply(lambda x: ' '.join(x))  # Convertir tuplas a strings
+ return ngram_df
 
-  combined_df = pd.concat(all_ngrams, ignore_index=True)
+def plot_ngrams(ngram_df, top_n=10):
+ """
+ Visualiza los n-grams más comunes en un gráfico de barras.
+ """
+ # Seleccionar los top_n n-grams más comunes
+ top_ngrams = ngram_df.head(top_n)
+ # Crear gráfico de barras
+ plt.figure(figsize=(10, 4))
+ plt.bar(top_ngrams['ngram'], top_ngrams['frequency'])
+ plt.xticks(rotation=45)
+ plt.title(f'Top {top_n} N-grams más Comunes')
+ plt.xlabel('N-grams')
+ plt.ylabel('Frecuencia')
+ plt.show()
 
-  return combined_df
+def display_ngrams_with_plot_side_by_side(text, n=2, top_n=10):
+ """
+ Muestra los n-grams más comunes en una tabla y un gráfico de barras, uno al lado del otro.
+ """
+ ngram_df = get_ngrams(text, n)
+ top_ngrams = ngram_df.head(top_n)
 
+ fig, ax = plt.subplots(1, 2, figsize=(10, 4))
 
+ # Tabla de n-grams
+ ax[0].axis('off')
+ table = ax[0].table(cellText=top_ngrams.values, colLabels=top_ngrams.columns, cellLoc='center', loc='center')
+ table.scale(1, 1.5)
+ table.auto_set_font_size(False)
+ table.set_fontsize(10)
+ ax[0].set_title(f'Top {top_n} N-grams', fontsize=10)
+
+ # Gráfico de barras
+ ax[1].bar(top_ngrams['ngram'], top_ngrams['frequency'])
+ ax[1].set_xticks(range(len(top_ngrams['ngram'])))
+ ax[1].set_xticklabels(top_ngrams['ngram'], rotation=45, ha='right', fontsize=8)
+ ax[1].set_title(f'Top {top_n} N-grams más Comunes', fontsize=10)
+ ax[1].set_xlabel('N-grams', fontsize=10)
+ ax[1].set_ylabel('Frecuencia', fontsize=10)
+
+ plt.tight_layout()
+ plt.show()
