@@ -3,6 +3,7 @@ python-dotenv
 pymupdf
 langchain
 langchain-community
+langchain-openai
 nltk
 llama-parse
 nest_asyncio
