@@ -14,3 +14,4 @@ seaborn
 wordCloud
 textblob
 scikit-learn
+streamlit

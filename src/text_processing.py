@@ -1,11 +1,20 @@
 import os
+from pathlib import Path
 from langchain.text_splitter import CharacterTextSplitter
 from langchain.vectorstores import FAISS
 from langchain_openai import OpenAIEmbeddings
 from dotenv import load_dotenv
+from src import config  # Importar el archivo de configuración
 
+# Cargar las variables de entorno
 load_dotenv()
+
+# Obtener la API key de OpenAI desde las variables de entorno
 openai_api_key = os.getenv('OPENAI_API_KEY')
+
+# Utilizar la ruta VECTORSTORE_PATH desde config.py
+VECTORSTORE_PATH = config.VECTORSTORE_PATH
+
 
 def get_text_chunks(text):
     text_splitter = CharacterTextSplitter(
@@ -30,19 +39,12 @@ def save_vectorstore(vectorstore, path):
 def load_vectorstore(path):
     return FAISS.load_local(path, embeddings=OpenAIEmbeddings(openai_api_key=openai_api_key), allow_dangerous_deserialization=True)
 
-def create_and_save_vectorstore(contenido, path):
-    # Generate the text chunks
+def create_and_save_vectorstore(contenido):
+    # Generar los fragmentos de texto
     text_chunks = get_text_chunks(contenido)
 
-    # Create the embeddings and the vectorstore
+    # Crear los embeddings y el vectorstore
     vectorstore = get_vectorstore(text_chunks)
 
-    # Save the vectorstore to disk
-    save_vectorstore(vectorstore, path)
-
-# Define the path where you want to save the vectorstore
-VECTORSTORE_PATH = "vectorstore/"
-
-# Create and save the vectorstore
-cleaned_text = "Aquí va tu texto limpio"  # Asegúrate de definir cleaned_text con el contenido apropiado
-create_and_save_vectorstore(cleaned_text, VECTORSTORE_PATH)
+    # Guardar el vectorstore en el disco
+    save_vectorstore(vectorstore, VECTORSTORE_PATH)
