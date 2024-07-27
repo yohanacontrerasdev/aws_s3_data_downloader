@@ -43,6 +43,3 @@ def get_evaluation():
     # Resultado por pregunta
     result_df = result.to_pandas()
     return res_df
-
-result = get_evaluation()
-print(result)
