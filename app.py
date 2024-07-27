@@ -7,6 +7,7 @@ from langchain.chains import ConversationalRetrievalChain
 from htmlTemplates import css, bot_template, user_template
 from langchain_core.prompts import ChatPromptTemplate
 from dotenv import load_dotenv
+from src import ragas_utils
 
 load_dotenv()
 
@@ -48,6 +49,8 @@ def display_retrieved_documents():
         # También podrías mostrar otros metadatos del documento si están disponibles
 
 def main():
+    df = ragas_utils.get_evaluation()
+    print(df)
     st.set_page_config(page_title="FinancialChatbot", page_icon="🤖")
     st.write(css, unsafe_allow_html=True)
 
