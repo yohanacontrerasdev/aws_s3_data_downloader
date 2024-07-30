@@ -29,3 +29,6 @@ __pycache__/
 
 # Ignorar la carpeta vectorstore
 vectorstore/
+
+# Ignorar el archivo data.json
+data.json
