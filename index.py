@@ -1,81 +1,78 @@
 import os
 import streamlit as st
-from langchain_core.messages import HumanMessage, AIMessage
 from langchain_community.vectorstores import FAISS
-from langchain_core.prompts import ChatPromptTemplate
-from langchain_core.output_parsers import StrOutputParser
 from langchain_openai import OpenAIEmbeddings, ChatOpenAI
-from dotenv import load_dotenv
+from langchain.memory import ConversationBufferMemory
 from langchain.chains import ConversationalRetrievalChain
+from htmlTemplates import css, bot_template, user_template
+from langchain_core.prompts import ChatPromptTemplate
+from langchain_core.messages import HumanMessage, AIMessage
+from dotenv import load_dotenv
 
 load_dotenv()
+
+# Establecer la clave de API como variable de entorno
+os.environ["OPENAI_API_KEY"] = os.getenv("OPENAI_API_KEY")
+
 VECTORSTORE_PATH = "vectorstore/"
 
-# Here we initialize our history variable
-if "chat_history" not in st.session_state:
-    st.session_state["chat_history"] = []
-
-st.set_page_config(page_title='Financial ChatBot', page_icon='🤑')
-
-st.title('FACha_tBot')
-
-
-# get response
 def load_vectorstore(path):
     return FAISS.load_local(path, embeddings=OpenAIEmbeddings(), allow_dangerous_deserialization=True)
 
+def get_conversation_chain(vectorstore):
+    template = """
+    You are a financial chat bot, you will respond questions in base the information extracted from a bunch of pdf 
+    """
+    prompt = ChatPromptTemplate.from_template(template)
+    llm = ChatOpenAI()
+    memory = ConversationBufferMemory(memory_key='chat_history', return_messages=True)
+    conversation_chain = ConversationalRetrievalChain.from_llm(
+        llm=llm,
+        retriever=vectorstore.as_retriever(),
+        memory=memory,
+        condense_question_prompt=prompt
+    )
+    return conversation_chain
 
-def get_retriever():
+def handle_userinput(user_question):
+    response = st.session_state.conversation({'question': user_question})
+    st.session_state.chat_history = response['chat_history']
+
+    for message in st.session_state.chat_history:
+        # Use isinstance to check the type of message object
+        if isinstance(message, HumanMessage):
+            st.write(user_template.replace("{{MSG}}", message.content), unsafe_allow_html=True)
+        elif isinstance(message, AIMessage):
+            st.write(bot_template.replace("{{MSG}}", message.content), unsafe_allow_html=True)
+
+def main():
+    st.set_page_config(page_title="FinancialChatbot", page_icon="🤖")
+    st.write(css, unsafe_allow_html=True)
+
+    if "conversation" not in st.session_state or st.session_state.conversation is None:
+        st.session_state.conversation = None
+        st.session_state.chat_history = []
+
+    st.header("Chat with NASDAQ PDFs :books:")
+
+    if "chat_history" in st.session_state and st.session_state.chat_history:
+        for message in st.session_state.chat_history:
+            # Use isinstance to check the type of message object
+            if isinstance(message, HumanMessage):
+                st.write(user_template.replace("{{MSG}}", message.content), unsafe_allow_html=True)
+            elif isinstance(message, AIMessage):
+                st.write(bot_template.replace("{{MSG}}", message.content), unsafe_allow_html=True)
+
+    user_question = st.chat_input("Ask a question about your documents:")
+    if user_question:
+        handle_userinput(user_question)
+
+    # Cargar el vectorstore desde el disco
     if os.path.exists(VECTORSTORE_PATH):
         vectorstore = load_vectorstore(VECTORSTORE_PATH)
-        retriever = vectorstore.as_retriever()
-
-        # Print details about the retriever
-        print(f'Retriever loaded from {VECTORSTORE_PATH}')
-        # replace `size` and `info` with actual methods or properties of the retriever object
-        # print(f'Number of documents in retriever: {retriever.size()}')
-        # print(f'Other information: {retriever.}')
-
-        return retriever
-
-
-def get_ai_response(query, hat_history):
-    template = """Your are a helpful chat bot. Answer the following questions using the provided context, 
-    where is the data to response all the questions, and the history of the conversation: 
-    context: {context} 
-    chat_history: {chat_history} 
-    user_question: {user_question}"""
-    prompt = ChatPromptTemplate.from_template(template)
-    # here I have to use my llm
-    llm = ChatOpenAI()
-
-    retriever = get_retriever()
-    # return stream
-    chain = prompt | llm | StrOutputParser()
-    return chain.stream({
-        "context": retriever,
-        "chat_history": hat_history,
-        "user_question": query,
-    })
-
-
-# conversation
-for message in st.session_state.chat_history:
-    if isinstance(message, HumanMessage):
-        with st.chat_message("Human"):
-            st.markdown(message.content)
+        st.session_state.conversation = get_conversation_chain(vectorstore)
     else:
-        with st.chat_message("AI"):
-            st.markdown(message.content)
+        st.error("Vector store not found. Please generate it first.")
 
-user_query = st.chat_input('Ask for financial assistant')
-
-# user input
-if user_query is not None and user_query != "":
-    st.session_state.chat_history.append(HumanMessage(user_query))
-    with st.chat_message('Human'):
-        st.markdown(user_query)
-    with st.chat_message('AI'):
-        ai_response = st.write_stream(get_ai_response(user_query, st.session_state.chat_history))
-
-    st.session_state.chat_history.append(AIMessage(ai_response))
+if __name__ == '__main__':
+    main()
