@@ -16,12 +16,15 @@ os.environ["OPENAI_API_KEY"] = os.getenv("OPENAI_API_KEY")
 
 VECTORSTORE_PATH = "vectorstore/"
 
+
 def load_vectorstore(path):
     return FAISS.load_local(path, embeddings=OpenAIEmbeddings(), allow_dangerous_deserialization=True)
 
+
 def get_conversation_chain(vectorstore):
     template = """
-    You are a financial chat bot, you will respond questions in base the information extracted from a bunch of pdf, you 
+    You are a financial chat bot, you will respond questions in base the information extracted from a bunch of pdf,
+    the data contains encodings of tables separated by | 
     """
     prompt = ChatPromptTemplate.from_template(template)
     llm = ChatOpenAI()
@@ -33,7 +36,6 @@ def get_conversation_chain(vectorstore):
         condense_question_prompt=prompt
     )
     return conversation_chain
-
 def handle_userinput(user_question):
     response = st.session_state.conversation({'question': user_question})
     st.session_state.chat_history = response['chat_history']
@@ -41,13 +43,15 @@ def handle_userinput(user_question):
     for message in st.session_state.chat_history:
         # Use isinstance to check the type of message object
         if isinstance(message, HumanMessage):
-            st.write(user_template.replace("{{MSG}}", message.content), unsafe_allow_html=True)
+            with st.chat_message("Human"):
+                st.write(message.content)
         elif isinstance(message, AIMessage):
-            st.write(bot_template.replace("{{MSG}}", message.content), unsafe_allow_html=True)
+            with st.chat_message("AI"):
+                st.write(message.content)
+
 
 def main():
     st.set_page_config(page_title="FinancialChatbot", page_icon="🤖")
-    st.write(css, unsafe_allow_html=True)
 
     if "conversation" not in st.session_state or st.session_state.conversation is None:
         st.session_state.conversation = None
@@ -57,22 +61,24 @@ def main():
 
     if "chat_history" in st.session_state and st.session_state.chat_history:
         for message in st.session_state.chat_history:
-            # Use isinstance to check the type of message object
             if isinstance(message, HumanMessage):
-                st.write(user_template.replace("{{MSG}}", message.content), unsafe_allow_html=True)
+                with st.chat_message("Human"):
+                    st.markdown(message.content)
             elif isinstance(message, AIMessage):
-                st.write(bot_template.replace("{{MSG}}", message.content), unsafe_allow_html=True)
+                with st.chat_message("AI"):
+                    st.markdown(message.content)
 
     user_question = st.chat_input("Ask a question about your documents:")
     if user_question:
         handle_userinput(user_question)
 
-    # Cargar el vectorstore desde el disco
+    # Load vectorstore from disk
     if os.path.exists(VECTORSTORE_PATH):
         vectorstore = load_vectorstore(VECTORSTORE_PATH)
         st.session_state.conversation = get_conversation_chain(vectorstore)
     else:
         st.error("Vector store not found. Please generate it first.")
+
 
 if __name__ == '__main__':
     main()
