@@ -21,7 +21,7 @@ def load_vectorstore(path):
 
 def get_conversation_chain(vectorstore):
     template = """
-    You are a financial chat bot, you will respond questions in base the information extracted from a bunch of pdf 
+    You are a financial chat bot, you will respond questions in base the information extracted from a bunch of pdf, you 
     """
     prompt = ChatPromptTemplate.from_template(template)
     llm = ChatOpenAI()
