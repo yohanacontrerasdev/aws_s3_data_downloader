@@ -18,8 +18,8 @@ VECTORSTORE_PATH = config.VECTORSTORE_PATH
 def get_text_chunks(text):
   text_splitter = CharacterTextSplitter(
     separator=" ",
-    chunk_size=10000,
-    chunk_overlap=2000,
+    chunk_size=1000,
+    chunk_overlap=200,
     length_function=len
   )
   chunks = text_splitter.split_text(text)
