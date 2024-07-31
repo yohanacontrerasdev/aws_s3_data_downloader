@@ -26,3 +26,6 @@ __pycache__/
 *.swp
 *.bak
 *.old
+
+# Ignorar la carpeta vectorstore
+vectorstore/
