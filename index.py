@@ -16,12 +16,15 @@ os.environ["OPENAI_API_KEY"] = os.getenv("OPENAI_API_KEY")
 
 VECTORSTORE_PATH = "vectorstore/"
 
+
 def load_vectorstore(path):
     return FAISS.load_local(path, embeddings=OpenAIEmbeddings(), allow_dangerous_deserialization=True)
 
+
 def get_conversation_chain(vectorstore):
     template = """
-    You are a financial chat bot, you will respond questions in base the information extracted from a bunch of pdf, you 
+    You are a financial chat bot, you will respond questions in base the information extracted from a bunch of pdf,
+    the data contains encodings of tables separated by | 
     """
     prompt = ChatPromptTemplate.from_template(template)
     llm = ChatOpenAI()
@@ -34,6 +37,7 @@ def get_conversation_chain(vectorstore):
     )
     return conversation_chain
 
+
 def handle_userinput(user_question):
     response = st.session_state.conversation({'question': user_question})
     st.session_state.chat_history = response['chat_history']
@@ -44,6 +48,7 @@ def handle_userinput(user_question):
             st.write(user_template.replace("{{MSG}}", message.content), unsafe_allow_html=True)
         elif isinstance(message, AIMessage):
             st.write(bot_template.replace("{{MSG}}", message.content), unsafe_allow_html=True)
+
 
 def main():
     st.set_page_config(page_title="FinancialChatbot", page_icon="🤖")
@@ -73,6 +78,7 @@ def main():
         st.session_state.conversation = get_conversation_chain(vectorstore)
     else:
         st.error("Vector store not found. Please generate it first.")
+
 
 if __name__ == '__main__':
     main()
