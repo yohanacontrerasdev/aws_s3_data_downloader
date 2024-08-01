@@ -1,4 +1,5 @@
 import os
+from pathlib import Path
 from langchain.text_splitter import CharacterTextSplitter
 from langchain.vectorstores import FAISS
 from langchain_openai import OpenAIEmbeddings
