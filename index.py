@@ -6,7 +6,6 @@ from langchain.memory import ConversationBufferMemory
 from langchain.chains import ConversationalRetrievalChain
 from htmlTemplates import css, bot_template, user_template
 from langchain_core.prompts import ChatPromptTemplate
-from langchain_core.messages import HumanMessage, AIMessage
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -23,9 +22,8 @@ def load_vectorstore(path):
 
 def get_conversation_chain(vectorstore):
     template = """
-    You are a financial chat bot, you will respond questions in base the information extracted from a bunch of pdf,
-    the data contains encodings of tables separated by | 
-    """
+  Your template here
+  """
     prompt = ChatPromptTemplate.from_template(template)
     llm = ChatOpenAI()
     memory = ConversationBufferMemory(memory_key='chat_history', return_messages=True)
@@ -36,18 +34,16 @@ def get_conversation_chain(vectorstore):
         condense_question_prompt=prompt
     )
     return conversation_chain
+
+
 def handle_userinput(user_question):
     response = st.session_state.conversation({'question': user_question})
     st.session_state.chat_history = response['chat_history']
-
-    for message in st.session_state.chat_history:
-        # Use isinstance to check the type of message object
-        if isinstance(message, HumanMessage):
-            with st.chat_message("Human"):
-                st.write(message.content)
-        elif isinstance(message, AIMessage):
-            with st.chat_message("AI"):
-                st.write(message.content)
+    for i, message in enumerate(st.session_state.chat_history):
+        if i % 2 == 0:
+            st.write(message.content)
+        else:
+            st.write(message.content)
 
 
 def main():
@@ -58,21 +54,11 @@ def main():
         st.session_state.chat_history = []
 
     st.header("Chat with NASDAQ PDFs :books:")
-
-    if "chat_history" in st.session_state and st.session_state.chat_history:
-        for message in st.session_state.chat_history:
-            if isinstance(message, HumanMessage):
-                with st.chat_message("Human"):
-                    st.markdown(message.content)
-            elif isinstance(message, AIMessage):
-                with st.chat_message("AI"):
-                    st.markdown(message.content)
-
     user_question = st.chat_input("Ask a question about your documents:")
     if user_question:
         handle_userinput(user_question)
 
-    # Load vectorstore from disk
+    # Cargar el vectorstore desde el disco
     if os.path.exists(VECTORSTORE_PATH):
         vectorstore = load_vectorstore(VECTORSTORE_PATH)
         st.session_state.conversation = get_conversation_chain(vectorstore)
