@@ -41,7 +41,7 @@ def load_vectorstore(path):
 
 def create_and_save_vectorstore(contenido):
   # Generate the text fragments
-  text_chunks = get_text_chunks(contenido, 2000, 400)
+  text_chunks = get_text_chunks(contenido, 200, 75)
 
   # Create the embeddings and the vectorstore
   vectorstore = get_vectorstore(text_chunks)

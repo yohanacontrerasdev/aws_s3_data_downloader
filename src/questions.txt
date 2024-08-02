@@ -6,3 +6,15 @@ Question: What were 1-800-Flowers.com, Inc.'s net revenues in 2021? (fallo)
 Answer: In 2021, 1-800-Flowers.com, Inc.'s net revenues were $2,138.2 million.
 Question: What was 1-800-Flowers.com, Inc.'s cost of revenues in 2022? (fallo)
 Answer: In 2022, 1-800-Flowers.com, Inc.'s cost of revenues was $1,386.1 million.
+Question: What was the net loss attributable to the company's ordinary shareholders of 21Vianet Group, Inc. in 2015?
+Answer: The net loss attributable to the company's ordinary shareholders of 21Vianet Group, Inc. in 2015 was (428,099) RMB or 66,087 USD.
+Question: What were 21Vianet Group, Inc.'s net intangible assets in 2018 and 2019?
+Answer: 21Vianet Group, Inc.'s net intangible assets in 2018 were RMB 355,313 and in 2019 they were RMB 410,595 (USD 58,978).
+Question: What were 2U, Inc.'s total costs and expenses in 2019?
+Answer: In 2019, 2U, Inc.'s total costs and expenses were $821.4 million.
+Question: What were the Company’s cash interest payments for 2022, 2021, and 2020?
+Answer: The Company’s cash interest payments were $43.8 million for 2022, $25.5 million for 2021, and $10.8 million for 2020.
+Question: What were the total loans and leases for 2022 compared to 2021?
+Answer: The total loans and leases were $6,011,162 for 2022 and $5,346,214 for 2021.
+Question: What was the cost of revenue for 2019 and 2017?
+Answer: The cost of revenue was $61,033 in 2019 and $10,560 in 2017.
