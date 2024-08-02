@@ -20,6 +20,8 @@ def get_text_chunks(text, chunk_size=1000, chunk_overlap=200):
     separator=" ",
     chunk_size=chunk_size,
     chunk_overlap=chunk_overlap,
+    chunk_size=1000,
+    chunk_overlap=200,
     length_function=len
   )
   chunks = text_splitter.split_text(text)

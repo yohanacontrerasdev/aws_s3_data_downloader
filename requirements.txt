@@ -22,3 +22,13 @@ ipywidgets
 ipython
 tqdm
 pymupdf
+langchain~=0.2.10
+nltk~=3.8.1
+streamlit~=1.36.0
+datasets
+ragas
+jupyter
+ipywidgets
+ipython
+tqdm
+pymupdf

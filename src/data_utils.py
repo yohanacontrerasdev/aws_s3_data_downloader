@@ -27,16 +27,19 @@ def download_pdfs_from_s3():
   response = s3.list_objects_v2(Bucket=BUCKET_NAME, Prefix=PREFIX)
   data = []
 
+  #file_count = 0
+
   if "Contents" in response:
     for obj in response["Contents"]:
       file_name = obj["Key"]
-      if file_name.endswith("/") or not file_name.endswith(".pdf"):
+      if file_name.endswith("/") or not file_name.endswith(".pdf"): #or file_count >=2:
         continue
 
       try:
         file_obj = s3.get_object(Bucket=BUCKET_NAME, Key=file_name)
         pdf_content = file_obj['Body'].read()
         data.append({"name": os.path.basename(file_name), "content": pdf_content})
+        #file_count +=1
       except Exception as e:
         print(f"Failed to download {file_name}: {e}")
   else:
@@ -96,7 +99,7 @@ def download_pdfs_and_convert_to_text(use_llamaparse=False, llamaparse_api_key=N
     print("No PDFs found for the specified years.")
     return pd.DataFrame()
 
-  # Limit to the first 20 PDFs
+  # Recuperar los primeros 20 PDFs
   filtered_df = filtered_df.head(20)
 
   filtered_df['text'] = filtered_df.apply(lambda row: extract_text(row, use_llamaparse, llamaparse_api_key), axis=1)
