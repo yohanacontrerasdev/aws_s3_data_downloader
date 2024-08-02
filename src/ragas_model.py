@@ -27,7 +27,7 @@ def get_conversation_chain(vectorstore):
     prompt = ChatPromptTemplate.from_template(template)
     llm = ChatOpenAI()
     memory = ConversationBufferMemory(memory_key='chat_history', return_messages=True, output_key='answer')
-    retriever = vectorstore.as_retriever()
+    retriever = vectorstore.as_retriever(search_kwargs={'k':4})
     conversation_chain = ConversationalRetrievalChain.from_llm(
         llm=llm,
         retriever=retriever,
