@@ -15,11 +15,11 @@ openai_api_key = os.getenv('OPENAI_API_KEY')
 # Use the VECTORSTORE_PATH path from config.py
 VECTORSTORE_PATH = config.VECTORSTORE_PATH
 
-def get_text_chunks(text):
+def get_text_chunks(text, chunk_size=1000, chunk_overlap=200):
   text_splitter = CharacterTextSplitter(
     separator=" ",
-    chunk_size=10000,
-    chunk_overlap=2000,
+    chunk_size=chunk_size,
+    chunk_overlap=chunk_overlap,
     length_function=len
   )
   chunks = text_splitter.split_text(text)

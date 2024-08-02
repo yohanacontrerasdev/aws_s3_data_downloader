@@ -5,6 +5,7 @@ from llama_parse import LlamaParse
 import pandas as pd
 import nest_asyncio
 import re
+import fitz
 
 nest_asyncio.apply()
 load_dotenv()
@@ -54,13 +55,32 @@ def filter_pdfs_by_years(df):
   filtered_df = df[(df['year'] == max_year) | (df['year'] == min_year)]
   return filtered_df
 
-def extract_text_from_pdf_content(pdf_content, api_key, file_name):
+def extract_text_with_llamaparse(pdf_content, api_key, file_name):
   document = LlamaParse(result_type="markdown", api_key=api_key).load_data(pdf_content, extra_info={"file_name": file_name})
   full_text = "".join([t.text for t in document])
   return full_text
 
-def download_pdfs_and_convert_to_text():
-  LLAMAPARSE_API_KEY = os.getenv("LLAMAPARSE_API_KEY")
+def extract_text_with_fitz(pdf_content):
+  document = fitz.open(stream=pdf_content, filetype="pdf")
+  text = ""
+  for page_num in range(len(document)):
+      page = document.load_page(page_num)
+      text += page.get_text()
+  return text
+
+class LlamaParseAPIKeyMissingError(Exception):
+  pass
+
+# Extract text based on the selected method
+def extract_text(row, use_llamaparse, llamaparse_api_key):
+    if use_llamaparse:
+        return extract_text_with_llamaparse(row['content'], llamaparse_api_key, row['name'])
+    else:
+        return extract_text_with_fitz(row['content'])
+
+def download_pdfs_and_convert_to_text(use_llamaparse=False, llamaparse_api_key=None):
+  if use_llamaparse and not llamaparse_api_key:
+    raise LlamaParseAPIKeyMissingError("API key for LlamaParse is required when use_llamaparse is set to True.")
 
   # Download all PDFs from S3
   df = download_pdfs_from_s3()
@@ -79,9 +99,6 @@ def download_pdfs_and_convert_to_text():
   # Limit to the first 20 PDFs
   filtered_df = filtered_df.head(20)
 
-  # Extraer texto de los PDFs filtrados
-  filtered_df['text'] = filtered_df.apply(
-      lambda row: extract_text_from_pdf_content(row['content'], LLAMAPARSE_API_KEY, row['name']), axis=1
-  )
+  filtered_df['text'] = filtered_df.apply(lambda row: extract_text(row, use_llamaparse, llamaparse_api_key), axis=1)
 
   return filtered_df
