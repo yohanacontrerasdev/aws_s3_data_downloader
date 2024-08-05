@@ -1,26 +1,66 @@
-Question: What were 1-800-Flowers.com, Inc.'s  2019 total net revenues?
-Answer: 1-800-Flowers.com, Inc.'s 2019 total net revenues were $1,248.6 million.
-Question: What was 1-800-Flowers.com, Inc.'s gross profit margin as of July 2019?
-Answer: As of July 2019, 1-800-Flowers.com, Inc.'s gross profit margin was 42.1%.
-Question: What were 1-800-Flowers.com, Inc.'s net revenues in 2021?
-Answer: In 2021, 1-800-Flowers.com, Inc.'s net revenues were $2,138.2 million.
-Question: What was 1-800-Flowers.com, Inc.'s cost of revenues in 2022?
-Answer: In 2022, 1-800-Flowers.com, Inc.'s cost of revenues was $1,386.1 million.
-Question: What were 2U, Inc.'s total costs and expenses in 2019?
-Answer: In 2019, 2U, Inc.'s total costs and expenses were $821.4 million.
-Question: What was the trend in 2U, Inc.'s total stockholders' equity from 2015 to 2019?
-Answer: 2U, Inc.'s total stockholders' equity increased from $195,789 in 2015 to $711,250 in 2019, showing a consistent upward trend over the years: $195,789 (2015), $195,237 (2016), $387,832 (2017), $705,009 (2018), and $711,250 (2019).
-Question: What were the Company’s cash interest payments for 2022, 2021, and 2020?
-Answer: The Company’s cash interest payments were $43.8 million for 2022, $25.5 million for 2021, and $10.8 million for 2020.
-Question: What were the total loans and leases for 2022 compared to 2021?
-Answer: The total loans and leases were $6,011,162 for 2022 and $5,346,214 for 2021.
-Question: What were the total loans and leases and accrued interest receivable at December 31, 2022, and 2021?
-Answer: Total Loans and Leases: $6.01 billion (2022), $5.35 billion (2021), Accrued Interest Receivable: $18.75 million (2022), $12.94 million (2021)
-Question: What were the cash and cash equivalents at the end of the year for 2019, 2018, and 2017?
-Answer: Cash and cash equivalents were $107,285 in 2019, $106,647 in 2018, and $100,155 in 2017.
-Question: What was the revenue for TXG in 2021?
-Answer: The revenue for TXG in 2021 was $490,490.
-Question: How did interest expense change from 2020 to 2021, and what was the main reason for this change?
-Answer: Interest expense decreased by $0.8 million, or 49%, for the year ended December 31, 2021, compared to 2020. This decrease was primarily due to the repayment of the term loan in February 2020.
-Question: What was the cost of revenue for 2019 and 2017?
-Answer: The cost of revenue was $61,033 in 2019 and $10,560 in 2017.
+Question: What was 21Vianet Group, Inc.'s net income for the year ended December 31, 2015?  
+Answer: 21Vianet Group, Inc.'s net income in 2015 was 3,634,372 RMB or 561,050 USD.
+Question: What was the total cost of revenues for 21Vianet Group, Inc. in 2015?  
+Answer: The total cost of revenues for 21Vianet Group, Inc. in 2015 was 2,780,614 RMB or 429,253 USD.
+Question: What was 21Vianet Group, Inc.'s net loss in 2015?  
+Answer: 21Vianet Group, Inc.'s net loss in 2015 was 401,275 RMB or 61,946 USD.
+Question: What was 21Vianet Group, Inc.'s Gross Profit in 2015?  
+Answer: 21Vianet Group, Inc.'s Gross Profit in 2015 was 853,758 RMB or 131,797 USD.
+Question: How much were 21Vianet Group, Inc.'s sales and marketing expenses in 2015?  
+Answer: 21Vianet Group, Inc.'s sales and marketing expenses in 2015 were 359,460 RMB or 55,491 USD.
+Question: What was the net loss attributable to the company's ordinary shareholders of 21Vianet Group, Inc. in 2015?  
+Answer: The net loss attributable to the company's ordinary shareholders of 21Vianet Group, Inc. in 2015 was (428,099) RMB or 66,087 USD.
+Question: What was 21Vianet Group, Inc.'s basic earnings per share (Basic EPS) in 2015?  
+Answer: 21Vianet Group, Inc.'s basic earnings per share in 2015 was (0.85) RMB ((0.13) USD).
+Question: What was 21Vianet Group, Inc.'s basic earnings per ADS in 2015?  
+Answer: 21Vianet Group, Inc.'s basic earnings per ADS in 2015 was (5.10) RMB ((0.79) USD).
+Question: How many basic shares were used to calculate 21Vianet Group, Inc.'s basic earnings per share in 2015?  
+Answer: The number of basic shares used to calculate 21Vianet Group, Inc.'s basic earnings per share in 2015 was 492,065,239 shares.
+Question: What were the share-based compensation expenses for 21Vianet Group, Inc.'s cost of revenues in 2015?  
+Answer: The share-based compensation expenses for 21Vianet Group, Inc.'s cost of revenues in 2015 were 12,422 RMB (1,918 USD).
+Question: What is the main focus of 21Vianet Group, Inc. in terms of services offered?  
+Answer: 21Vianet Group, Inc. is a leading provider of data center services in China, hosting its customers' servers and network equipment, improving the performance, availability, and security of their internet infrastructure. They also offer managed network services, value-added services such as CDN, VPN, and broadband services.
+Question: What type of cloud services did 21Vianet Group, Inc. start offering in 2013 and 2014?  
+Answer: In 2013, 21Vianet Group, Inc. started offering public cloud services, and in 2014, private cloud services and hybrid cloud services.
+Question: What are some of the risks and challenges faced by 21Vianet Group, Inc. according to the report?  
+Answer: Some of the risks and challenges faced by 21Vianet Group, Inc. include the ability to successfully implement their expansion plan, integration of acquired businesses, competition with China Telecom and China Unicom, attracting and retaining customers, and controlling costs as a public company.
+Question: What have been the average monthly recurring revenues of 21Vianet Group, Inc. over the past three years and how have they changed?  
+Answer: The average monthly recurring revenues of 21Vianet Group, Inc. increased from RMB 146.6 million in 2013 to RMB 208.4 million in 2014 and to RMB 265.4 million (US$ 41.0 million) in 2015.
+Question: What were the telecommunications costs for 21Vianet Group, Inc. in 2015?  
+Answer: The telecommunications costs for 21Vianet Group, Inc. in 2015 were RMB 1,728,911 or USD 266,898.
+Question: What was the total cost of revenues for 21Vianet Group, Inc. in 2015 and how does it compare to 2014 and 2013?  
+Answer: The total cost of revenues for 21Vianet Group, Inc. in 2015 was RMB 2,780,614 (USD 429,253), which increased from RMB 2,066,304 in 2014 and RMB 1,449,845 in 2013.
+Question: What percentage of total net revenues did the telecommunications costs represent for 21Vianet Group, Inc. in 2015?  
+Answer: The telecommunications costs represented 47.6% of total net revenues for 21Vianet Group, Inc. in 2015.
+Question: What was 21Vianet Group, Inc.'s total net revenue in 2015 and how does it compare to previous years?  
+Answer: 21Vianet Group, Inc.'s total net revenue in 2015 was RMB 3,634,372 (USD 561,050), compared to RMB 2,876,447 in 2014 and RMB 1,966,717 in 2013.
+Question: What was the reported closing price for 21Vianet Group, Inc.'s ADS on April 11, 2016?  
+Answer: The reported closing price for 21Vianet Group, Inc.'s ADS on April 11, 2016 was USD 20.79 per ADS.
+Question: What were the annual high and low trading prices for 21Vianet Group, Inc.'s ADS in 2015?  
+Answer: The annual high and low trading prices for 21Vianet Group, Inc.'s ADS in 2015 were USD 32.34 and USD 14.23, respectively.
+Question: What were the quarterly high and low trading prices for 21Vianet Group, Inc.'s ADS in the first quarter of 2015?  
+Answer: The quarterly high and low trading prices for 21Vianet Group, Inc.'s ADS in the first quarter of 2015 were USD 19.34 and USD 15.31, respectively.
+Question: What was the highest trading price for 21Vianet Group, Inc.'s ADS in March 2016?  
+Answer: The highest trading price for 21Vianet Group, Inc.'s ADS in March 2016 was USD 20.56.
+Question: What were the total assets of 21Vianet Group, Inc. as of December 31, 2015?  
+Answer: The total assets of 21Vianet Group, Inc. as of December 31, 2015 were RMB 10,863,910 (USD 1,677,007).
+Question: What were the total non-current assets of 21Vianet Group, Inc. as of December 31, 2015?  
+Answer: The total non-current assets of 21Vianet Group, Inc. as of December 31, 2015 were RMB 7,382,202 (USD 1,139,615).
+Question: What was the total net income of 21Vianet Group, Inc. in 2017 and 2018?  
+Answer: The total net income of 21Vianet Group, Inc. in 2017 was RMB 3,392,705 and in 2018 was RMB 3,401,037.
+Question: What was 21Vianet Group, Inc.'s gross profit in 2017 and 2018?  
+Answer: 21Vianet Group, Inc.'s gross profit in 2017 was RMB 758,410, and in 2018 it was RMB 944,871.
+Question: What was 21Vianet Group, Inc.'s operating loss in 2016 and 2018?  
+Answer: 21Vianet Group, Inc.'s operating loss in 2016 was RMB 840,196, and in 2018 it was RMB 237,479.
+Question: What was the net loss attributable to 21Vianet Group, Inc.'s ordinary shareholders in 2017 and 2019?  
+Answer: The net loss attributable to 21Vianet Group, Inc.'s ordinary shareholders in 2017 was RMB 772,730, and in 2019 it was RMB 182,293 (USD 26,183).
+Question: What was 21Vianet Group, Inc.'s basic loss per share in 2018 and 2019?  
+Answer: 21Vianet Group, Inc.'s basic loss per share in 2018 was (0.30) RMB, and in 2019 it was (0.27) RMB (0.04 USD).
+Question: What were 21Vianet Group, Inc.'s total current assets in 2019?  
+Answer: 21Vianet Group, Inc.'s total current assets in 2019 were RMB 5,228,184 (USD 750,982).
+Question: How much cash and cash equivalents did 21Vianet Group, Inc. have at the end of 2018 and 2019?  
+Answer: At the end of 2018, 21Vianet Group, Inc. had RMB 2,358,556 in cash and cash equivalents, and at the end of 2019, it had RMB 1,808,483 (USD 259,772).
+Question: What were 21Vianet Group, Inc.'s total non-current assets in 2018 and 2019?  
+Answer: 21Vianet Group, Inc.'s total non-current assets in 2018 were RMB 6,472,608 and in 2019 they were RMB 9,045,522 (USD 1,299,307).
+Question: What were 21Vianet Group, Inc.'s net intangible assets in 2018 and 2019?  
+Answer: 21Vianet Group, Inc.'s net intangible assets in 2018 were RMB 355,313 and in 2019 they were RMB 410,595 (USD 58,978).
