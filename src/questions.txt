@@ -2,7 +2,25 @@ Question: What were 1-800-Flowers.com, Inc.'s  2019 total net revenues?
 Answer: 1-800-Flowers.com, Inc.'s 2019 total net revenues were $1,248.6 million.
 Question: What was 1-800-Flowers.com, Inc.'s gross profit margin as of July 2019?
 Answer: As of July 2019, 1-800-Flowers.com, Inc.'s gross profit margin was 42.1%.
-Question: What were 1-800-Flowers.com, Inc.'s net revenues in 2021? (fallo)
+Question: What were 1-800-Flowers.com, Inc.'s net revenues in 2021?
 Answer: In 2021, 1-800-Flowers.com, Inc.'s net revenues were $2,138.2 million.
-Question: What was 1-800-Flowers.com, Inc.'s cost of revenues in 2022? (fallo)
+Question: What was 1-800-Flowers.com, Inc.'s cost of revenues in 2022?
 Answer: In 2022, 1-800-Flowers.com, Inc.'s cost of revenues was $1,386.1 million.
+Question: What were 2U, Inc.'s total costs and expenses in 2019?
+Answer: In 2019, 2U, Inc.'s total costs and expenses were $821.4 million.
+Question: What was the trend in 2U, Inc.'s total stockholders' equity from 2015 to 2019?
+Answer: 2U, Inc.'s total stockholders' equity increased from $195,789 in 2015 to $711,250 in 2019, showing a consistent upward trend over the years: $195,789 (2015), $195,237 (2016), $387,832 (2017), $705,009 (2018), and $711,250 (2019).
+Question: What were the Company’s cash interest payments for 2022, 2021, and 2020?
+Answer: The Company’s cash interest payments were $43.8 million for 2022, $25.5 million for 2021, and $10.8 million for 2020.
+Question: What were the total loans and leases for 2022 compared to 2021?
+Answer: The total loans and leases were $6,011,162 for 2022 and $5,346,214 for 2021.
+Question: What were the total loans and leases and accrued interest receivable at December 31, 2022, and 2021?
+Answer: Total Loans and Leases: $6.01 billion (2022), $5.35 billion (2021), Accrued Interest Receivable: $18.75 million (2022), $12.94 million (2021)
+Question: What were the cash and cash equivalents at the end of the year for 2019, 2018, and 2017?
+Answer: Cash and cash equivalents were $107,285 in 2019, $106,647 in 2018, and $100,155 in 2017.
+Question: What was the revenue for TXG in 2021?
+Answer: The revenue for TXG in 2021 was $490,490.
+Question: How did interest expense change from 2020 to 2021, and what was the main reason for this change?
+Answer: Interest expense decreased by $0.8 million, or 49%, for the year ended December 31, 2021, compared to 2020. This decrease was primarily due to the repayment of the term loan in February 2020.
+Question: What was the cost of revenue for 2019 and 2017?
+Answer: The cost of revenue was $61,033 in 2019 and $10,560 in 2017.
