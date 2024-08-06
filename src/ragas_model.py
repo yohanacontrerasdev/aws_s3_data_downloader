@@ -22,11 +22,11 @@ def load_vectorstore(path):
     return FAISS.load_local(path, embeddings=OpenAIEmbeddings(), allow_dangerous_deserialization=True)
 
 
-def get_conversation_chain(vectorstore, template):
+def get_conversation_chain(vectorstore, template, num_contexts):
     prompt = ChatPromptTemplate.from_template(template)
     llm = ChatOpenAI()
     memory = ConversationBufferMemory(memory_key='chat_history', return_messages=True, output_key='answer')
-    retriever = vectorstore.as_retriever(search_kwargs={'k':4})
+    retriever = vectorstore.as_retriever(search_kwargs={'k':num_contexts})
     conversation_chain = ConversationalRetrievalChain.from_llm(
         llm=llm,
         retriever=retriever,
@@ -52,7 +52,7 @@ def display_retrieved_documents(retrieved_docs):
     return page_contents
 
 
-def execute(df, template):
+def execute(df, template, num_contexts):
     # Inicializar el contador para manejar el índice manualmente
     index = 0
     if df is not None:
@@ -63,7 +63,7 @@ def execute(df, template):
             # Cargar el vectorstore desde el disco
             if os.path.exists(VECTORSTORE_PATH):
                 vectorstore = load_vectorstore(VECTORSTORE_PATH)
-                conversation_chain = get_conversation_chain(vectorstore, template)
+                conversation_chain = get_conversation_chain(vectorstore, template, num_contexts)
             else:
                 print(f"Vector store not found in {VECTORSTORE_PATH}. Please generate it first.")
 
