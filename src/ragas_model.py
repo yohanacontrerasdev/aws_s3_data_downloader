@@ -17,17 +17,16 @@ VECTORSTORE_PATH = os.path.join(PROYECTO_PATH, "vectorstore/")
 conversation_chain = None
 chat_history = []
 
+
 def load_vectorstore(path):
     return FAISS.load_local(path, embeddings=OpenAIEmbeddings(), allow_dangerous_deserialization=True)
 
-def get_conversation_chain(vectorstore):
-    template = """
-    Your template here
-    """
+
+def get_conversation_chain(vectorstore, template):
     prompt = ChatPromptTemplate.from_template(template)
     llm = ChatOpenAI()
     memory = ConversationBufferMemory(memory_key='chat_history', return_messages=True, output_key='answer')
-    retriever = vectorstore.as_retriever()
+    retriever = vectorstore.as_retriever(search_kwargs={'k':4})
     conversation_chain = ConversationalRetrievalChain.from_llm(
         llm=llm,
         retriever=retriever,
@@ -37,6 +36,7 @@ def get_conversation_chain(vectorstore):
     )
     return conversation_chain
 
+
 # Función para obtener los answer y contexts para una pregunta dada
 def get_answer_contexts(question, conversation_chain):
     response = conversation_chain.invoke({'question': question})
@@ -44,26 +44,26 @@ def get_answer_contexts(question, conversation_chain):
     contexts = display_retrieved_documents(response['source_documents'])
     return answer, contexts
 
+
 def display_retrieved_documents(retrieved_docs):
     page_contents = []
     for doc in retrieved_docs:
         page_contents.append(doc.page_content)
     return page_contents
 
-def execute(df):
-    
+
+def execute(df, template):
     # Inicializar el contador para manejar el índice manualmente
     index = 0
-    
     if df is not None:
 
         # Bucle while para iterar sobre el DataFrame
         while index < len(df):
-            
+
             # Cargar el vectorstore desde el disco
             if os.path.exists(VECTORSTORE_PATH):
                 vectorstore = load_vectorstore(VECTORSTORE_PATH)
-                conversation_chain = get_conversation_chain(vectorstore)
+                conversation_chain = get_conversation_chain(vectorstore, template)
             else:
                 print(f"Vector store not found in {VECTORSTORE_PATH}. Please generate it first.")
 

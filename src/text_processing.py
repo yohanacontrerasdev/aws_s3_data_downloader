@@ -36,11 +36,12 @@ def save_vectorstore(vectorstore, path):
   vectorstore.save_local(path)
 
 def load_vectorstore(path):
+
   return FAISS.load_local(path, embeddings=OpenAIEmbeddings(openai_api_key=openai_api_key), allow_dangerous_deserialization=True)
 
-def create_and_save_vectorstore(contenido):
+def create_and_save_vectorstore(contenido, chunk_size=1000, chunk_overlap=200):
   # Generate the text fragments
-  text_chunks = get_text_chunks(contenido)
+  text_chunks = get_text_chunks(contenido, chunk_size, chunk_overlap)
 
   # Create the embeddings and the vectorstore
   vectorstore = get_vectorstore(text_chunks)
