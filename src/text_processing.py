@@ -15,7 +15,7 @@ openai_api_key = os.getenv('OPENAI_API_KEY')
 # Use the VECTORSTORE_PATH path from config.py
 VECTORSTORE_PATH = config.VECTORSTORE_PATH
 
-def get_text_chunks(text, chunk_size=1000, chunk_overlap=200):
+def get_text_chunks(text, chunk_size, chunk_overlap):
   text_splitter = CharacterTextSplitter(
     separator=" ",
     chunk_size=chunk_size,
@@ -39,7 +39,7 @@ def load_vectorstore(path):
 
   return FAISS.load_local(path, embeddings=OpenAIEmbeddings(openai_api_key=openai_api_key), allow_dangerous_deserialization=True)
 
-def create_and_save_vectorstore(contenido, chunk_size=1000, chunk_overlap=200):
+def create_and_save_vectorstore(contenido, chunk_size, chunk_overlap):
   # Generate the text fragments
   text_chunks = get_text_chunks(contenido, chunk_size, chunk_overlap)
 
