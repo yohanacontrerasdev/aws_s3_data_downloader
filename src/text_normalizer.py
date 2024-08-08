@@ -20,7 +20,7 @@ def clean_text(text):
   text = text.lower()
   text = re.sub(r'https?://\S+|www\.\S+', '', text)
   text = re.sub(r'\s+', ' ', text)
-  text = re.sub(r"[^\w\s|\-]", "", text)
+  text = re.sub(r'(?<!\d)\.(?!\d)', '', text)
   text = re.sub(r'\b\S+\-\S+\.com\b', '', text, flags=re.MULTILINE)
   text = text.replace('®', '')
   text = text.strip()
