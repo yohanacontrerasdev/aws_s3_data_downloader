@@ -1,4 +1,4 @@
-# Nasdaq Report Downloader
+# Nasdaq GPT
 
 This project is a Python script to download annual reports and 10-K statements of all NASDAQ listed companies from an Amazon S3 bucket.
 
@@ -50,8 +50,8 @@ This project is a Python script to download annual reports and 10-K statements o
 
 ## Use
 
-To run the script and download the data:
+To run the script:
 
 ```bash
-python download_data.py
+python app.py
 ```
