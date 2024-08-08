@@ -60,13 +60,18 @@ def extract_text_with_llamaparse(pdf_content, api_key, file_name):
   full_text = "".join([t.text for t in document])
   return full_text
 
-def extract_text_with_fitz(pdf_content):
-  document = fitz.open(stream=pdf_content, filetype="pdf")
-  text = ""
-  for page_num in range(len(document)):
-      page = document.load_page(page_num)
-      text += page.get_text()
-  return text
+def extract_text_with_fitz(pdf_content, file_name):
+    print(f"Processing file: {file_name}")
+    try:
+        document = fitz.open(stream=pdf_content, filetype="pdf")
+        text = ""
+        for page_num in range(len(document)):
+            page = document.load_page(page_num)
+            text += page.get_text()
+        return text
+    except Exception as e:
+        print(f"Error processing file {file_name}: {e}")
+        return None
 
 class LlamaParseAPIKeyMissingError(Exception):
   pass
@@ -76,7 +81,7 @@ def extract_text(row, use_llamaparse, llamaparse_api_key):
     if use_llamaparse:
         return extract_text_with_llamaparse(row['content'], llamaparse_api_key, row['name'])
     else:
-        return extract_text_with_fitz(row['content'])
+        return extract_text_with_fitz(row['content'], row['name'])
 
 def download_pdfs_and_convert_to_text(use_llamaparse=False, llamaparse_api_key=None):
   if use_llamaparse and not llamaparse_api_key:
@@ -96,9 +101,8 @@ def download_pdfs_and_convert_to_text(use_llamaparse=False, llamaparse_api_key=N
     print("No PDFs found for the specified years.")
     return pd.DataFrame()
 
-  # Limit to the first 20 PDFs
-  filtered_df = filtered_df.head(20)
 
-  filtered_df['text'] = filtered_df.apply(lambda row: extract_text(row, use_llamaparse, llamaparse_api_key), axis=1)
+  filtered_df = filtered_df.copy()
+  filtered_df.loc[:, 'text'] = filtered_df.apply(lambda row: extract_text(row, use_llamaparse, llamaparse_api_key), axis=1)
 
   return filtered_df
