@@ -56,7 +56,7 @@ The main goal of our project is to develop a chatbot that serves as a financial 
 To use the chatbot, simply run the following command in your terminal:
 
 ```bash
-streamlit run app.py
+streamlit run index.py
 ```
 This command will start the chatbot in an interactive web application through streamlit.
 
