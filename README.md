@@ -60,6 +60,8 @@ streamlit run index.py
 ```
 This command will start the chatbot in an interactive web application through streamlit.
 
+## Questions Examples
+
 You can try for example this questions:
 
 Question: What was 1-800-Flowers.com, Inc.'s cost of revenues in 2022? 
