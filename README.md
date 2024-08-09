@@ -1,10 +1,10 @@
-# Nasdaq Report Downloader
+# NasdaqGPT
 
-This project is a Python script to download annual reports and 10-K statements of all NASDAQ listed companies from an Amazon S3 bucket.
+The main goal of our project is to develop a chatbot that serves as a financial advisor, providing quick and accurate answers to questions about companies listed on NASDAQ. For context, NASDAQ is one of the largest stock exchanges in the world, known for its high-tech stocks and innovative companies.
 
 ## Requirements
 
-- Python 3.x
+- Python >= 3.10.12
 - pip
 - Access to AWS with the necessary credentials
 
@@ -46,12 +46,16 @@ This project is a Python script to download annual reports and 10-K statements o
     AWS_SECRET_ACCESS_KEY=your_secret_access_key
     BUCKET_NAME=anyoneai-datasets
     PREFIX=nasdaq_annual_reports/
+    LLAMAPARSE_API_KEY='YOUR_LLAMAPARSE_API_KEY'
+    OPENAI_API_KEY='YOUR_OPENAI_API_KEY'
     ```
+5. Run all cells in data_exploration.ipynb
 
 ## Use
 
-To run the script and download the data:
+To use the chatbot, simply run the following command in your terminal:
 
 ```bash
-python download_data.py
+streamlit run app.py
 ```
+This command will start the chatbot in an interactive web application through streamlit.
