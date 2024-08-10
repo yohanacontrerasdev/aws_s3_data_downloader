@@ -58,7 +58,7 @@ You have two options to run the chatbot.
 ```bash
 streamlit run index.py
 ```
-2. Run the following command in your terminal to build a docker image with the DockerFile, after the process finished, go to the next url in a browser: `http://localhost:8501/`.  
+2. Run the following command in your terminal to build a docker image with the DockerFile, after the process finished, go to the next url in a browser: `http://localhost:8501/`, just remember to execute [data_exploration.ipynb](notebooks%2Fdata_exploration.ipynb) before it, to generate the vectorestore. 
 ```bash
 docker build .
 ```
