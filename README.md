@@ -53,12 +53,17 @@ The main goal of our project is to develop a chatbot that serves as a financial 
 
 ## Use
 
-To use the chatbot, simply run the following command in your terminal:
-
+You have two options to run the chatbot.  
+1. Generate a virtual environment and run the following command in your terminal to install all the dependencies:
 ```bash
 streamlit run index.py
 ```
-This command will start the chatbot in an interactive web application through streamlit.
+2. Run the following command in your terminal to build a docker image with the DockerFile, after the process finished, go to the next url in a browser: `http://localhost:8501/`.  
+```bash
+docker build .
+```
+
+
 
 ## Questions Examples
 
