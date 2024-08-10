@@ -56,6 +56,22 @@ The main goal of our project is to develop a chatbot that serves as a financial 
 To use the chatbot, simply run the following command in your terminal:
 
 ```bash
-streamlit run app.py
+streamlit run index.py
 ```
 This command will start the chatbot in an interactive web application through streamlit.
+
+## Questions Examples
+
+You can try for example this questions:
+
+Question: What was 1-800-Flowers.com, Inc.'s cost of revenues in 2022? 
+Expected Answer: In 2022, 1-800-Flowers.com, Inc.'s cost of revenues was $1,386.1 million.
+Reference:NASDAQ_FLWS_2022_page66
+
+Question: What type of cloud services did 21Vianet Group, Inc. start offering in 2013 and 2014? 
+Expected Answer: In 2013, 21Vianet Group, Inc. started offering public cloud services, and in 2014, private cloud services and hybrid cloud services. 
+Reference PDF: NASDAQ_VNET_2015_page 67
+
+Question: What was 21Vianet Group, Inc.'s basic loss per share in 2018 and 2019
+Expected Answer: 21Vianet Group, Inc.'s basic loss per share in 2018 was (0.30) RMB, and in 2019 it was (0.27) RMB (0.04 USD). 
+Reference PDF: NASDAQ_VNET_2019_page_4
