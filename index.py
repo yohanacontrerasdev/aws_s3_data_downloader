@@ -15,6 +15,41 @@ os.environ["OPENAI_API_KEY"] = os.getenv("OPENAI_API_KEY")
 
 VECTORSTORE_PATH = "vectorstore/"
 
+css = """
+<style>
+/* Cambiar el color del texto y la fuente en toda la página */
+html, body, [data-testid="stApp"] * {
+    color: #f4edd8; /* Color blanco para el texto */
+    font-family: 'Arial', sans-serif; /* Fuente Arial */
+    .st-emotion-cache-vj1c9o{
+    background-color: #0d4555;
+    }
+}
+</style>
+"""
+
+page_bg_img = """
+<style>
+[data-testid="stHeader"]{
+    background-color: #022a3d;
+}
+[data-testid="stApp"]{
+    background-color: #4b9b9d
+}
+[data-testid="stVerticalBlock"]{
+    font-color: #f4edd8
+}
+[data-testid="stHeadingWithActionElements"]{
+    h2: {
+    color:black
+    }
+}
+</style>
+"""
+
+
+
+
 # Initialize chat_history at the global level to persist across reruns
 if "chat_history" not in st.session_state:
     st.session_state.chat_history = []
@@ -56,13 +91,15 @@ else:
 
 def main():
     st.set_page_config(page_title="FinancialChatbot", page_icon="🤖")
+    st.markdown(page_bg_img, unsafe_allow_html=True)
+    st.markdown(css, unsafe_allow_html=True)
 
     print('session state', st.session_state)
 
     if "conversation" not in st.session_state or st.session_state.conversation is None:
         st.session_state.conversation = None
 
-    st.header("Chat with NASDAQ PDFs :books:")
+    st.header("NASDAQ GPT 💰🤖💬")
 
     # Move user input handling above chat history display
     user_question = st.chat_input("Ask a question about your documents:")
