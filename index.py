@@ -24,6 +24,9 @@ html, body, [data-testid="stApp"] * {
     .st-emotion-cache-vj1c9o{
     background-color: #0d4555;
     }
+    .st-emotion-cache-uhkwx6{
+    background-color: #0d4555;
+    }
 }
 </style>
 """
