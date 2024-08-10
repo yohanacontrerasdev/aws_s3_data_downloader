@@ -27,6 +27,9 @@ html, body, [data-testid="stApp"] * {
     .st-emotion-cache-uhkwx6{
     background-color: #0d4555;
     }
+    .stChatInput{
+    background-color: #21222d;
+    }
 }
 </style>
 """
@@ -38,14 +41,6 @@ page_bg_img = """
 }
 [data-testid="stApp"]{
     background-color: #4b9b9d
-}
-[data-testid="stVerticalBlock"]{
-    font-color: #f4edd8
-}
-[data-testid="stHeadingWithActionElements"]{
-    h2: {
-    color:black
-    }
 }
 </style>
 """
